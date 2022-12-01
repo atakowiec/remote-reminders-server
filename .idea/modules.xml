@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../remote-reminders-app/.idea/remote-reminders-app.iml" filepath="$PROJECT_DIR$/../remote-reminders-app/.idea/remote-reminders-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/remote-reminders-backend.iml" filepath="$PROJECT_DIR$/.idea/remote-reminders-backend.iml" />
+    </modules>
+  </component>
+</project>
