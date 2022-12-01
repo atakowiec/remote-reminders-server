@@ -1,11 +1,12 @@
 const bcrypt = require("bcrypt");
 
-const usersDB = {
-    users: require("../model/usersDB.json")
-};
+const jwt = require("jsonwebtoken");
+require("dotenv").config()
+
+const usersDB = require("../model/UsersDB")
 
 const handleAuth = async (req, res) => {
-    console.log(req.body)
+    console.log("req.body: "+req.body)
     const { username, password } = req.body;
 
     if(!username || !password)
@@ -17,7 +18,23 @@ const handleAuth = async (req, res) => {
         if(!user || !match) {
             return res.status(401).json({"message": "Username and password don't match"})
         } else {
-            return res.status(200).json({"username": user.username})
+            const accessToken = jwt.sign(
+                { "username": user.username },
+                process.env.ACCESS_TOKEN_SECRET,
+                { expiresIn: "30s" }
+            )
+            const refreshToken = jwt.sign(
+                { "username": user.username },
+                process.env.REFRESH_TOKEN_SECRET,
+                { expiresIn: "1d" }
+            )
+            const otherUsers = usersDB.users.filter(e => e.username !== user.username);
+
+            usersDB.setUsers([...otherUsers, {...user, refreshToken}])
+
+            return res.status(200)
+                .cookie('jwt', accessToken, {httpOnly: true, maxAge: 24 * 3600 * 1000})
+                .send(accessToken)
         }
     } catch (err) {
         return res.status(500).json({"message": err.message})

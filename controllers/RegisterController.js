@@ -1,14 +1,5 @@
 const bcrypt = require("bcrypt");
-const fsPromises = require("fs").promises;
-const path = require("path")
-
-const usersDB = {
-    users: require("../model/usersDB.json"),
-    setUsers: async (data) => {
-        usersDB.users = data;
-        await fsPromises.writeFile(path.join(__dirname, "..", "model", "usersDB.json"), JSON.stringify(usersDB.users))
-    }
-};
+const usersDB = require("../model/UsersDB")
 
 const handleNewUser = async (req, res) => {
     console.log("connected")
@@ -21,7 +12,7 @@ const handleNewUser = async (req, res) => {
 
     try {
         const encryptedPassword = await bcrypt.hash(password, 10)
-        await usersDB.setUsers([...usersDB.users, {"username": username, "password": encryptedPassword}])
+        await usersDB.setUsers([...usersDB.users, {"username": username, "password": encryptedPassword}]).saveFile()
         console.log(usersDB.users);
         return res.status(200).json({"message": "Account created"})
     } catch (err) {
