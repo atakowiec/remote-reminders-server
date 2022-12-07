@@ -8,6 +8,7 @@
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2Njk5MTA1MTEsImV4cCI6MTY2OTk5NjkxMX0.QzdKwQtvhcznpgxx0oHYKcURNMEwlNAbMVBkevDpMx4",
     "reminders": [
       {
+        "id": 1,
         "title": "title 1",
         "description": "description 1",
         "profiles": [
@@ -16,6 +17,7 @@
         "active": true
       },
       {
+        "id": 2,
         "title": "title 2",
         "description": "description 2",
         "profiles": [
@@ -25,6 +27,7 @@
         "active": true
       },
       {
+        "id": 3,
         "title": "title 3",
         "description": "description 3",
         "profiles": [
