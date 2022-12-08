@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/register', require('./routes/register'));
 
 app.use('/reminders', require('./routes/api/reminders'));
+app.use('/profiles', require('./routes/api/profiles'));
 app.use('/auth', require('./routes/auth'));
 
 app.get("/*", (req,res) => res.sendStatus(404));
