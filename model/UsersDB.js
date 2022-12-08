@@ -10,7 +10,7 @@ const usersDB = {
     saveFile: async () => {
         await fsPromises.writeFile(
             path.join(__dirname, "..", "model", "usersDB.json"),
-            JSON.stringify(usersDB.users))
+            JSON.stringify(usersDB.users, null, ' '))
         return usersDB;
     },
     getUserData: username => usersDB.users.find(e => e.username === username)
